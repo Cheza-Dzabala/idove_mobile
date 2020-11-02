@@ -1,2 +1,2 @@
-# idove_mobile
+# iDove Mobile
 Git Repository for iDove mobile application. 
