@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "500454981626",
+    "firebase_url": "https://idove-aec6f.firebaseio.com",
+    "project_id": "idove-aec6f",
+    "storage_bucket": "idove-aec6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500454981626:android:23a8f72c66090f3a626e43",
+        "android_client_info": {
+          "package_name": "com.au.int.idove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500454981626-pe7kengps0g91mjm5ujk3ck5dettn85q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9ndxSynV6w1hrFgyJi6lZH8C8V_FcrwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500454981626-pe7kengps0g91mjm5ujk3ck5dettn85q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500454981626-r07fm7n6duehitvs2mg5rsvktpji71d9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.au.int.idove"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
