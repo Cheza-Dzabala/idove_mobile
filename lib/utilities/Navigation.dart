@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:idove/pages/auth/login.dart';
 import 'package:idove/pages/main/messages/main.dart';
 import 'package:idove/pages/main/newsfeed/main.dart';
 import 'package:idove/pages/main/pages/forums/main.dart';
@@ -9,6 +10,7 @@ import 'package:idove/pages/main/profile/main.dart';
 import 'package:idove/pages/main/settings/main.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/GesturedListTile.dart';
+import 'package:idove/widgets/buttons.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'TextStyles.dart';
@@ -45,6 +47,21 @@ List<Widget> navigationMenu(BuildContext context) {
       route: MainIdoversPage.id,
       title: 'iDovers',
       icon: Ionicons.globe_outline,
+    ),
+    Padding(
+      padding: EdgeInsets.symmetric(horizontal: 50.0),
+      child: wideButton(
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => LoginPage(),
+              ),
+              (route) => false,
+            );
+          },
+          buttonText: 'LOGOUT',
+          color: ACCENT_COLOR),
     ),
   ];
 }

@@ -7,6 +7,7 @@ import 'package:idove/pages/main/layout.dart';
 import 'package:idove/pages/main/pages/forums/main.dart';
 import 'package:idove/pages/main/pages/groups/main.dart';
 import 'package:idove/pages/main/pages/idovers/main.dart';
+import 'package:idove/pages/main/search/main.dart';
 import 'package:idove/utilities/Colors.dart';
 
 void main() {
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         MainGroupsPage.id: (context) => MainGroupsPage(),
         MainForumsPage.id: (context) => MainForumsPage(),
         MainIdoversPage.id: (context) => MainIdoversPage(),
+        MainSearchPage.id: (context) => MainSearchPage(),
       },
     );
   }

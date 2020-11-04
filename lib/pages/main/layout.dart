@@ -1,5 +1,6 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
+import 'package:idove/pages/main/search/main.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/Navigation.dart';
 import 'package:ionicons/ionicons.dart';
@@ -34,7 +35,12 @@ class _LayoutPageState extends State<LayoutPage> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Ionicons.search_outline),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, MainSearchPage.id);
+              },
+              child: Icon(Ionicons.search_outline),
+            ),
           ),
         ],
       ),

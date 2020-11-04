@@ -38,6 +38,7 @@ dependencies:
   backdrop: ^0.4.7
   salomon_bottom_bar: ^2.0.0
   ionicons: ^0.0.3
+  appbar_textfield: ^1.0.1+1
 
 dev_dependencies:
   flutter_test:
