@@ -5,6 +5,7 @@ import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:ionicons/ionicons.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   static String id = '/forgot_password';
@@ -60,7 +61,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         TextFormField(
                           decoration: formTextFieldDecoration(
                               icon: Icon(
-                                Icons.mail,
+                                Ionicons.mail_outline,
                                 size: 20.0,
                               ),
                               hint: 'Email Address'),

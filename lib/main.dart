@@ -3,7 +3,10 @@ import 'package:idove/pages/auth/forgot_password.dart';
 import 'package:idove/pages/auth/login.dart';
 import 'package:idove/pages/auth/registration.dart';
 import 'package:idove/pages/auth/reset_password.dart';
-import 'package:idove/pages/main/home.dart';
+import 'package:idove/pages/main/layout.dart';
+import 'package:idove/pages/main/pages/forums/main.dart';
+import 'package:idove/pages/main/pages/groups/main.dart';
+import 'package:idove/pages/main/pages/idovers/main.dart';
 import 'package:idove/utilities/Colors.dart';
 
 void main() {
@@ -32,7 +35,10 @@ class MyApp extends StatelessWidget {
         RegistrationPage.id: (context) => RegistrationPage(),
         ForgotPasswordPage.id: (context) => ForgotPasswordPage(),
         ResetPasswordPage.id: (context) => ResetPasswordPage(),
-        HomePage.id: (context) => HomePage(),
+        LayoutPage.id: (context) => LayoutPage(),
+        MainGroupsPage.id: (context) => MainGroupsPage(),
+        MainForumsPage.id: (context) => MainForumsPage(),
+        MainIdoversPage.id: (context) => MainIdoversPage(),
       },
     );
   }

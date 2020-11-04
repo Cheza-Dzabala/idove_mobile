@@ -35,6 +35,9 @@ dependencies:
   firebase_storage: ^4.0.1
   cloud_firestore: ^0.14.2
   bordered_text: ^1.0.1
+  backdrop: ^0.4.7
+  salomon_bottom_bar: ^2.0.0
+  ionicons: ^0.0.3
 
 dev_dependencies:
   flutter_test:
