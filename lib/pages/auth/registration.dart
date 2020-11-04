@@ -4,6 +4,7 @@ import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:ionicons/ionicons.dart';
 
 class RegistrationPage extends StatefulWidget {
   static String id = '/registration';
@@ -58,7 +59,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           TextFormField(
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
-                                  Icons.mail,
+                                  Ionicons.mail_outline,
                                   size: 20.0,
                                 ),
                                 hint: 'Email Address'),
@@ -76,7 +77,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           TextFormField(
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
-                                  Icons.person,
+                                  Ionicons.folder_outline,
                                   size: 20.0,
                                 ),
                                 hint: 'First Name'),
@@ -93,7 +94,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           TextFormField(
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
-                                  Icons.person,
+                                  Ionicons.folder_outline,
                                   size: 20.0,
                                 ),
                                 hint: 'Last Name'),
@@ -110,7 +111,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           TextFormField(
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
-                                  Icons.verified_user,
+                                  Ionicons.shield_checkmark_outline,
                                   size: 20.0,
                                 ),
                                 hint: 'Username (Something unique)'),
@@ -127,7 +128,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           TextFormField(
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
-                                  Icons.lock,
+                                  Ionicons.lock_closed_outline,
                                   size: 20.0,
                                 ),
                                 hint: 'Password'),
@@ -144,7 +145,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           TextFormField(
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
-                                  Icons.lock,
+                                  Ionicons.lock_closed_outline,
                                   size: 20.0,
                                 ),
                                 hint: 'Confirm Password'),

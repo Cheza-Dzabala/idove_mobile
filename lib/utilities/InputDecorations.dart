@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 InputDecoration formTextFieldDecoration({Icon icon, @required String hint}) {
   return InputDecoration(
     labelText: hint,
-    labelStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 15.0),
+    labelStyle: TextStyle(fontWeight: FontWeight.w200, fontSize: 15.0),
     filled: true,
     prefixIcon: icon,
     border: InputBorder.none,

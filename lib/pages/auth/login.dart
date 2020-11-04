@@ -1,13 +1,14 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:idove/pages/auth/forgot_password.dart';
-import 'package:idove/pages/main/home.dart';
+import 'package:idove/pages/main/layout.dart';
 import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/pages/auth/registration.dart';
 import 'package:idove/painters/TopAuthPainer.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:ionicons/ionicons.dart';
 
 class LoginPage extends StatefulWidget {
   static String id = '/';
@@ -94,7 +95,7 @@ Widget loginBox(
         TextFormField(
           decoration: formTextFieldDecoration(
               icon: Icon(
-                Icons.mail,
+                Ionicons.mail_outline,
                 size: 20.0,
               ),
               hint: 'Email Address'),
@@ -112,7 +113,7 @@ Widget loginBox(
         TextFormField(
           decoration: formTextFieldDecoration(
               icon: Icon(
-                Icons.lock,
+                Ionicons.lock_closed_outline,
                 size: 20.0,
               ),
               hint: 'Password'),
@@ -141,7 +142,7 @@ Widget loginBox(
         ),
         wideButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, HomePage.id);
+              Navigator.pushReplacementNamed(context, LayoutPage.id);
             },
             buttonText: 'LOGIN'),
         Padding(

@@ -15,3 +15,11 @@ const TextStyle textMutedStyle =
     TextStyle(color: Colors.grey, fontWeight: FontWeight.w900, fontSize: 15.0);
 
 const TextStyle textLinkStyle = TextStyle(color: PRIMARY_COLOR);
+
+const TextStyle textNavigationTextStyle = TextStyle(
+  color: BACKGROUND_COLOR,
+  fontWeight: FontWeight.w700,
+);
+
+const TextStyle textBottomNavigationBar =
+    TextStyle(fontWeight: FontWeight.w700);

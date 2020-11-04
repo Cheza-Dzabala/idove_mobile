@@ -4,6 +4,7 @@ import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:ionicons/ionicons.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   static String id = 'reset_password';
@@ -60,7 +61,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         TextFormField(
                           decoration: formTextFieldDecoration(
                               icon: Icon(
-                                Icons.mail,
+                                Ionicons.lock_closed_outline,
                                 size: 20.0,
                               ),
                               hint: 'Password'),
@@ -78,7 +79,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         TextFormField(
                           decoration: formTextFieldDecoration(
                               icon: Icon(
-                                Icons.mail,
+                                Ionicons.lock_closed_outline,
                                 size: 20.0,
                               ),
                               hint: 'Confirm Password'),
