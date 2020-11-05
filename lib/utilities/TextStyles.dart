@@ -21,5 +21,15 @@ const TextStyle textNavigationTextStyle = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
+const TextStyle textAlertDialogTitleStyle = TextStyle(
+  color: MID_GREY,
+  fontWeight: FontWeight.w700,
+);
+
+const TextStyle textAlertDialogContentStyle =
+    TextStyle(fontWeight: FontWeight.w600);
+
+const TextStyle textAlertDialogActionButtonTextStyle =
+    TextStyle(fontWeight: FontWeight.w600, color: PRIMARY_COLOR);
 const TextStyle textBottomNavigationBar =
     TextStyle(fontWeight: FontWeight.w700);

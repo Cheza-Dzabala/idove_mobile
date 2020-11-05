@@ -39,6 +39,9 @@ dependencies:
   salomon_bottom_bar: ^2.0.0
   ionicons: ^0.0.3
   appbar_textfield: ^1.0.1+1
+  http: ^0.12.2
+  get_it: ^5.0.1
+  flutter_secure_storage: ^3.3.5
 
 dev_dependencies:
   flutter_test:

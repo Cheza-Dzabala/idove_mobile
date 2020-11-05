@@ -1,7 +1,8 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
 import 'package:idove/pages/main/search/main.dart';
-import 'package:idove/utilities/Colors.dart';
+import 'package:idove/services/service_locator.dart';
+import 'package:idove/services/storage/user_storage_service.dart';
 import 'package:idove/utilities/Navigation.dart';
 import 'package:ionicons/ionicons.dart';
 
@@ -14,6 +15,13 @@ class LayoutPage extends StatefulWidget {
 class _LayoutPageState extends State<LayoutPage> {
   int _selectedTab = 0;
   List<Widget> _widgets = pageWidgets;
+  String userName;
+  UserStorageService _userStorageService = locator<UserStorageService>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void _handleIndexChange(int i) {
     setState(() {
@@ -21,7 +29,16 @@ class _LayoutPageState extends State<LayoutPage> {
     });
   }
 
+  void prepareValues() {
+    _userStorageService.getFirstName().then((value) {
+      setState(() {
+        userName = value;
+      });
+    });
+  }
+
   Widget build(BuildContext context) {
+    prepareValues();
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
     return BackdropScaffold(
@@ -31,7 +48,7 @@ class _LayoutPageState extends State<LayoutPage> {
       ),
       stickyFrontLayer: true,
       appBar: BackdropAppBar(
-        title: Text('Welcome back, Cheza.'),
+        title: Text('Welcome back $userName!'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),

@@ -2,12 +2,15 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:idove/pages/auth/forgot_password.dart';
 import 'package:idove/pages/main/layout.dart';
+import 'package:idove/services/network/authentication_service.dart';
+import 'package:idove/services/service_locator.dart';
 import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/pages/auth/registration.dart';
 import 'package:idove/painters/TopAuthPainer.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:idove/widgets/dialogs.dart';
 import 'package:ionicons/ionicons.dart';
 
 class LoginPage extends StatefulWidget {
@@ -19,6 +22,20 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
+  bool isLoggingIn = false;
+
+  AuthenticationService _authenticationService =
+      locator<AuthenticationService>();
+
+  String email = '';
+  String password = '';
+
+  switchLoggingInState() {
+    setState(() {
+      isLoggingIn = !isLoggingIn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -26,10 +43,6 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       backgroundColor: BACKGROUND_COLOR,
-//      appBar: AppBar(
-//        backgroundColor: BACKGROUND_COLOR,
-//        elevation: 0.0,
-//      ),
       body: SingleChildScrollView(
         physics: ClampingScrollPhysics(),
         child: Container(
@@ -73,8 +86,125 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 80.0),
-                    child:
-                        loginBox(context, deviceHeight, deviceWidth, _formKey),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            decoration: formTextFieldDecoration(
+                                icon: Icon(
+                                  Ionicons.mail_outline,
+                                  size: 20.0,
+                                ),
+                                hint: 'Email Address'),
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (text) {
+                              setState(() {
+                                email = text;
+                              });
+                            },
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter your email address';
+                              }
+                              return null;
+                            },
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                          ),
+                          TextFormField(
+                            decoration: formTextFieldDecoration(
+                                icon: Icon(
+                                  Ionicons.lock_closed_outline,
+                                  size: 20.0,
+                                ),
+                                hint: 'Password'),
+                            obscureText: true,
+                            onChanged: (text) {
+                              setState(() {
+                                password = text;
+                              });
+                            },
+                            validator: (value) {
+                              if (value.isEmpty) {
+                                return 'Please enter a password';
+                              }
+                              return null;
+                            },
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, ForgotPasswordPage.id);
+                                },
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: textLinkStyle,
+                                ),
+                              ),
+                            ),
+                          ),
+                          wideButton(
+                              onPressed: () async {
+                                if (_formKey.currentState.validate()) {
+                                  if (isLoggingIn) {
+                                    print(
+                                        'Logging in value should be logging $isLoggingIn');
+                                    return;
+                                  } else {
+                                    switchLoggingInState();
+                                    // TODO: Make Http Call to endpoint
+                                    int statusCode =
+                                        await _authenticationService.login(
+                                            email: email, password: password);
+                                    if (statusCode != 200) {
+                                      switchLoggingInState();
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            loginDialog(context),
+                                      );
+                                    } else {
+                                      Navigator.pushReplacementNamed(
+                                          context, LayoutPage.id);
+                                    }
+                                  }
+                                }
+                              },
+                              buttonText:
+                                  isLoggingIn ? 'LOGGING IN...' : 'LOGIN'),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('Don\'t have an account? '),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context, RegistrationPage.id);
+                                  },
+                                  child: Text(
+                                    'Create a new account',
+                                    style: textLinkStyle,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            'ABOUT THE APP',
+                            style: textLinkStyle.copyWith(
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -84,90 +214,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
-
-Widget loginBox(
-    BuildContext context, double height, double width, GlobalKey formKey) {
-  return Form(
-    key: formKey,
-    child: Column(
-      children: [
-        TextFormField(
-          decoration: formTextFieldDecoration(
-              icon: Icon(
-                Ionicons.mail_outline,
-                size: 20.0,
-              ),
-              hint: 'Email Address'),
-          keyboardType: TextInputType.emailAddress,
-          validator: (value) {
-            if (value.isEmpty) {
-              return 'Please enter some text';
-            }
-            return null;
-          },
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0),
-        ),
-        TextFormField(
-          decoration: formTextFieldDecoration(
-              icon: Icon(
-                Ionicons.lock_closed_outline,
-                size: 20.0,
-              ),
-              hint: 'Password'),
-          obscureText: true,
-          validator: (value) {
-            if (value.isEmpty) {
-              return 'Please enter a password';
-            }
-            return null;
-          },
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, ForgotPasswordPage.id);
-              },
-              child: Text(
-                'Forgot Password?',
-                style: textLinkStyle,
-              ),
-            ),
-          ),
-        ),
-        wideButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, LayoutPage.id);
-            },
-            buttonText: 'LOGIN'),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Don\'t have an account? '),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, RegistrationPage.id);
-                },
-                child: Text(
-                  'Create a new account',
-                  style: textLinkStyle,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Text(
-          'ABOUT THE APP',
-          style: textLinkStyle.copyWith(fontWeight: FontWeight.w700),
-        ),
-      ],
-    ),
-  );
 }
