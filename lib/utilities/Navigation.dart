@@ -11,9 +11,9 @@ import 'package:idove/pages/main/settings/main.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/GesturedListTile.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:idove/widgets/dialogs.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'TextStyles.dart';
 
 List<Widget> pageWidgets = <Widget>[
   MainNewsfeedPage(),
@@ -51,13 +51,10 @@ List<Widget> navigationMenu(BuildContext context) {
     Padding(
       padding: EdgeInsets.symmetric(horizontal: 50.0),
       child: wideButton(
-          onPressed: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => LoginPage(),
-              ),
-              (route) => false,
+          onPressed: () async {
+            showDialog(
+              context: context,
+              builder: (context) => logoutDialog(context),
             );
           },
           buttonText: 'LOGOUT',

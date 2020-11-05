@@ -8,9 +8,11 @@ import 'package:idove/pages/main/pages/forums/main.dart';
 import 'package:idove/pages/main/pages/groups/main.dart';
 import 'package:idove/pages/main/pages/idovers/main.dart';
 import 'package:idove/pages/main/search/main.dart';
+import 'package:idove/services/service_locator.dart';
 import 'package:idove/utilities/Colors.dart';
 
 void main() {
+  setUpServiceLocator();
   runApp(MyApp());
 }
 
