@@ -30,7 +30,7 @@ class _LayoutPageState extends State<LayoutPage> {
   }
 
   void prepareValues() {
-    _userStorageService.getFirstName().then((value) {
+    _userStorageService.getUserName().then((value) {
       setState(() {
         userName = value;
       });

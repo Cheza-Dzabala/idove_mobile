@@ -22,7 +22,7 @@ const TextStyle textNavigationTextStyle = TextStyle(
 );
 
 const TextStyle textAlertDialogTitleStyle = TextStyle(
-  color: MID_GREY,
+  color: ACCENT_COLOR,
   fontWeight: FontWeight.w700,
 );
 
