@@ -158,7 +158,6 @@ class _LoginPageState extends State<LoginPage> {
                                     return;
                                   } else {
                                     switchLoggingInState();
-                                    // TODO: Make Http Call to endpoint
                                     int statusCode =
                                         await _authenticationService.login(
                                             email: email, password: password);

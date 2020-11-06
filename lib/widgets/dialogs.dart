@@ -22,7 +22,7 @@ Widget loginDialog(BuildContext context) {
       )
     ],
     content:
-        'Please verify your credentials. \n\nIf you cannot remember your password, reset it and try again.',
+        'Please verify your credentials. If you cannot remember your password, reset it and try again.',
     title: 'Couldn\'t Log You In',
   );
 }
@@ -43,20 +43,37 @@ Widget logoutDialog(BuildContext context) {
         },
         child: Text(
           'YES',
-          style: textAlertDialogActionButtonTextStyle.copyWith(color: WHITE),
+          style: textAlertDialogActionButtonTextStyle.copyWith(
+              color: PRIMARY_COLOR),
         ),
-        color: PRIMARY_COLOR,
       ),
       FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         child: Text(
           'NO',
-          style: textAlertDialogActionButtonTextStyle.copyWith(color: WHITE),
+          style: textAlertDialogActionButtonTextStyle.copyWith(
+              color: ACCENT_COLOR),
         ),
-        color: ACCENT_COLOR,
       ),
     ],
     content: 'Are you sure you want to quit the iDove app?',
     title: 'Logging You Out',
   );
+}
+
+Widget registrationDialog(BuildContext context, String content, String title,
+    {bool isSuccess = false}) {
+  return iDoveAlertDialog(actions: [
+    FlatButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      child: Text(
+        'Okay',
+        style: textAlertDialogActionButtonTextStyle,
+      ),
+    )
+  ], content: content, title: title, isSuccess: isSuccess);
 }

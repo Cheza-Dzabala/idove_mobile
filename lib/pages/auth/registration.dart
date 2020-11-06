@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:idove/painters/TopAuthPainer.dart';
+import 'package:idove/services/network/authentication_service.dart';
+import 'package:idove/services/service_locator.dart';
 import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
+import 'package:idove/widgets/dialogs.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:idove/extentions/InputValidators.dart';
 
 class RegistrationPage extends StatefulWidget {
   static String id = '/registration';
@@ -14,6 +18,23 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
+
+  String email;
+  String firstName;
+  String lastName;
+  String userName;
+  String password;
+  String passwordConfirmation;
+  bool isInAsyncCall = false;
+
+  AuthenticationService _authenticationService =
+      locator<AuthenticationService>();
+
+  void switchAsyncStatus() {
+    setState(() {
+      isInAsyncCall = !isInAsyncCall;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +56,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         physics: ClampingScrollPhysics(),
         child: Container(
           width: deviceWidth,
-          height: deviceHeight,
+          height: deviceHeight * 0.879,
           child: CustomPaint(
             painter: TopAuthPainter(),
             child: Padding(
@@ -64,17 +85,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                                 hint: 'Email Address'),
                             keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
                             validator: (value) {
+                              if (!value.isEmail()) {
+                                return 'Please enter a valid email address';
+                              }
                               if (value.isEmpty) {
-                                return 'Please enter some text';
+                                return 'Please enter your email address';
                               }
                               return null;
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                firstName = value;
+                              });
+                            },
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
                                   Ionicons.folder_outline,
@@ -89,9 +123,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                lastName = value;
+                              });
+                            },
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
                                   Ionicons.folder_outline,
@@ -106,26 +145,37 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                userName = value;
+                              });
+                            },
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
                                   Ionicons.shield_checkmark_outline,
                                   size: 20.0,
                                 ),
-                                hint: 'Username (Something unique)'),
+                                hint: 'Username (Something easy to remember)'),
                             validator: (value) {
                               if (value.isEmpty) {
-                                return 'Please enter some text';
+                                return 'Please enter a username';
                               }
                               return null;
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                password = value;
+                              });
+                            },
+                            obscureText: true,
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
                                   Ionicons.lock_closed_outline,
@@ -136,13 +186,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               if (value.isEmpty) {
                                 return 'Please provide a password';
                               }
+                              if (value != passwordConfirmation) {
+                                return 'Your password and password confirmation don\'t match';
+                              }
                               return null;
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                passwordConfirmation = value;
+                              });
+                            },
+                            obscureText: true,
                             decoration: formTextFieldDecoration(
                                 icon: Icon(
                                   Ionicons.lock_closed_outline,
@@ -153,17 +212,59 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               if (value.isEmpty) {
                                 return 'Please confirm your password';
                               }
+                              if (value != password) {
+                                return 'Your password and password confirmation don\'t match';
+                              }
                               return null;
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           wideButton(
-                            onPressed: () {
-                              print('register');
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
+                                // TODO:: Implement Registration API
+                                if (!isInAsyncCall) {
+                                  switchAsyncStatus();
+                                  Map<String, String> response =
+                                      await _authenticationService.register(
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                    email: email,
+                                    userName: userName,
+                                    password: password,
+                                    passwordConfirmation: passwordConfirmation,
+                                  );
+                                  switchAsyncStatus();
+                                  if (int.parse(response['statusCode']) !=
+                                      201) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            registrationDialog(
+                                              context,
+                                              response['error'],
+                                              'We couldn\'t get you set up!',
+                                            ));
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => registrationDialog(
+                                        context,
+                                        response['message'],
+                                        'All Set Up',
+                                        isSuccess: true,
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  return;
+                                }
+                              }
                             },
-                            buttonText: 'REGISTER',
+                            buttonText:
+                                isInAsyncCall ? 'REGISTERING...' : 'REGISTER',
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 10.0),
