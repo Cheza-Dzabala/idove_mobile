@@ -50,15 +50,18 @@ List<Widget> navigationMenu(BuildContext context) {
     ),
     Padding(
       padding: EdgeInsets.symmetric(horizontal: 50.0),
-      child: wideButton(
-          onPressed: () async {
-            showDialog(
-              context: context,
-              builder: (context) => logoutDialog(context),
-            );
-          },
-          buttonText: 'LOGOUT',
-          color: ACCENT_COLOR),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: wideButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) => logoutDialog(context),
+              );
+            },
+            buttonText: 'LOGOUT',
+            color: ACCENT_COLOR),
+      ),
     ),
   ];
 }

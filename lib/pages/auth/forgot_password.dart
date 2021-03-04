@@ -6,6 +6,7 @@ import 'package:idove/utilities/InputDecorations.dart';
 import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/buttons.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:idove/extentions/InputValidators.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   static String id = '/forgot_password';
@@ -71,6 +72,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             if (value.isEmpty) {
                               return 'Please enter your email address';
                             }
+                            if (!value.isEmail()) {
+                              return 'Please enter a valid email address';
+                            }
                             return null;
                           },
                         ),
@@ -79,8 +83,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         ),
                         wideButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, ResetPasswordPage.id);
+                              if (_formKey.currentState.validate()) {
+                                // TODO: IMPLEMENT API CALL
+
+                              }
                             },
                             buttonText: 'START RESET')
                       ],

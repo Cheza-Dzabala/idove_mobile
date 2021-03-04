@@ -21,6 +21,6 @@ class UserStorageService {
   Future<String> getUserName() async {
     var userData = await storage.read(key: 'user_data');
     Map<String, dynamic> data = jsonDecode(userData);
-    return data['user_data']['username'];
+    return data['username'];
   }
 }
