@@ -9,10 +9,10 @@ const TextStyle buttonTextStyle = TextStyle(
 );
 
 const TextStyle h1TextStyle =
-    TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 30.0);
+    TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 20.0);
 
 const TextStyle textMutedStyle =
-    TextStyle(color: Colors.grey, fontWeight: FontWeight.w900, fontSize: 15.0);
+    TextStyle(color: Colors.grey, fontWeight: FontWeight.w900, fontSize: 10.0);
 
 const TextStyle textLinkStyle = TextStyle(color: PRIMARY_COLOR);
 

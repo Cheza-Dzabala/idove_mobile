@@ -50,22 +50,25 @@ List<Widget> navigationMenu(BuildContext context) {
     ),
     Padding(
       padding: EdgeInsets.symmetric(horizontal: 50.0),
-      child: wideButton(
-          onPressed: () async {
-            showDialog(
-              context: context,
-              builder: (context) => logoutDialog(context),
-            );
-          },
-          buttonText: 'LOGOUT',
-          color: ACCENT_COLOR),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: wideButton(
+            onPressed: () async {
+              showDialog(
+                context: context,
+                builder: (context) => logoutDialog(context),
+              );
+            },
+            buttonText: 'LOGOUT',
+            color: ACCENT_COLOR),
+      ),
     ),
   ];
 }
 
 Widget bottomNavigationBar({Function handleIndexChange, int selectedTab}) {
   return SalomonBottomBar(
-    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+    margin: EdgeInsets.only(left: 16, right: 16, bottom: 25),
     currentIndex: selectedTab,
     onTap: handleIndexChange,
     selectedItemColor: ACCENT_COLOR,

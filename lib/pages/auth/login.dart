@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 80.0),
+                        padding: const EdgeInsets.only(top: 80.0),
                         child: Image(
                           width: 150,
                           image: AssetImage('assets/images/auLogo.png'),
@@ -72,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             'Welcome to iDove Mobile',
                             style: h1TextStyle,
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -85,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 80.0),
+                    padding: const EdgeInsets.only(top: 40.0),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -111,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 15.0),
+                            padding: EdgeInsets.symmetric(vertical: 5.0),
                           ),
                           TextFormField(
                             decoration: formTextFieldDecoration(

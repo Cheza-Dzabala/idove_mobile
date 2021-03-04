@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idove/utilities/Colors.dart';
 import 'package:idove/utilities/TextStyles.dart';
+import 'package:ionicons/ionicons.dart';
 
 Widget wideButton(
     {@required Function onPressed,
@@ -18,6 +19,23 @@ Widget wideButton(
           style: buttonTextStyle,
         ),
       ),
+    ),
+  );
+}
+
+Widget iconButton({@required Function onPressed, @required IconData icon}) {
+  return Material(
+    child: InkWell(
+      splashColor: Colors.grey.shade500, // inkwell color
+      child: SizedBox(
+        width: 30.0,
+        height: 70,
+        child: Icon(
+          icon,
+          color: PRIMARY_COLOR,
+        ),
+      ),
+      onTap: onPressed,
     ),
   );
 }

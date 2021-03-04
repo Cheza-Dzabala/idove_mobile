@@ -12,6 +12,8 @@ InputDecoration formTextFieldDecoration({Icon icon, @required String hint}) {
     labelStyle: TextStyle(fontWeight: FontWeight.w200, fontSize: 15.0),
     filled: true,
     prefixIcon: icon,
-    border: InputBorder.none,
+    border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide: BorderSide.none),
   );
 }

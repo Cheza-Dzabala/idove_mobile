@@ -1,5 +1,6 @@
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter/material.dart';
+import 'package:idove/pages/main/pages/profile/main.dart';
 import 'package:idove/pages/main/search/main.dart';
 import 'package:idove/services/service_locator.dart';
 import 'package:idove/services/storage/user_storage_service.dart';
@@ -48,7 +49,7 @@ class _LayoutPageState extends State<LayoutPage> {
       ),
       stickyFrontLayer: true,
       appBar: BackdropAppBar(
-        title: Text('Welcome back $userName!'),
+        title: Text('Welcome $userName'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -57,6 +58,15 @@ class _LayoutPageState extends State<LayoutPage> {
                 Navigator.pushNamed(context, MainSearchPage.id);
               },
               child: Icon(Ionicons.search_outline),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ProfilePage.id);
+              },
+              child: Icon(Ionicons.person_circle_outline),
             ),
           ),
         ],
@@ -80,12 +90,14 @@ class _LayoutPageState extends State<LayoutPage> {
                 ),
               ),
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: bottomNavigationBar(
-                    handleIndexChange: _handleIndexChange,
-                    selectedTab: _selectedTab,
+                  child: SizedBox(
+                    child: bottomNavigationBar(
+                      handleIndexChange: _handleIndexChange,
+                      selectedTab: _selectedTab,
+                    ),
                   ),
                 ),
               ),

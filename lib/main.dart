@@ -7,12 +7,18 @@ import 'package:idove/pages/main/layout.dart';
 import 'package:idove/pages/main/pages/forums/main.dart';
 import 'package:idove/pages/main/pages/groups/main.dart';
 import 'package:idove/pages/main/pages/idovers/main.dart';
+import 'package:idove/pages/main/pages/profile/main.dart';
 import 'package:idove/pages/main/search/main.dart';
 import 'package:idove/services/service_locator.dart';
 import 'package:idove/utilities/Colors.dart';
+import 'package:idove/utilities/Constants.dart';
+import 'package:parse_server_sdk/parse_server_sdk.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setUpServiceLocator();
+  await Parse().initialize(APPLICATION_ID, SERVER_URL,
+      debug: true, liveQueryUrl: LIVE_QUERY_URL, clientKey: CLIENT_KEY);
   runApp(MyApp());
 }
 
@@ -43,6 +49,7 @@ class MyApp extends StatelessWidget {
         MainForumsPage.id: (context) => MainForumsPage(),
         MainIdoversPage.id: (context) => MainIdoversPage(),
         MainSearchPage.id: (context) => MainSearchPage(),
+        ProfilePage.id: (context) => ProfilePage()
       },
     );
   }
