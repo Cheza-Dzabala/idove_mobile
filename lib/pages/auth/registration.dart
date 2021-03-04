@@ -56,7 +56,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         physics: ClampingScrollPhysics(),
         child: Container(
           width: deviceWidth,
-          height: deviceHeight * 0.879,
+          height: deviceHeight * 0.90,
           child: CustomPaint(
             painter: TopAuthPainter(),
             child: Padding(
@@ -72,7 +72,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 50.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -278,7 +278,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               Text(
                                 'TERMS & CONDITIONS.',
                                 style: textLinkStyle.copyWith(
-                                    fontWeight: FontWeight.w700),
+                                  fontSize: 10.0,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ],
                           ),

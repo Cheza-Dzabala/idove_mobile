@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:500454981626:android:1bc43bc51a5552f2626e43",
+        "android_client_info": {
+          "package_name": "com.au.idove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500454981626-pe7kengps0g91mjm5ujk3ck5dettn85q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9ndxSynV6w1hrFgyJi6lZH8C8V_FcrwU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500454981626-pe7kengps0g91mjm5ujk3ck5dettn85q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500454981626-r07fm7n6duehitvs2mg5rsvktpji71d9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.au.int.idove",
+                "app_store_id": "962194608"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:500454981626:android:23a8f72c66090f3a626e43",
         "android_client_info": {
           "package_name": "com.au.int.idove"
@@ -35,7 +72,8 @@
               "client_id": "500454981626-r07fm7n6duehitvs2mg5rsvktpji71d9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.au.int.idove"
+                "bundle_id": "com.au.int.idove",
+                "app_store_id": "962194608"
               }
             }
           ]

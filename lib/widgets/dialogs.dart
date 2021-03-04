@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idove/pages/auth/login.dart';
+import 'package:idove/services/network/authentication_service.dart';
 import 'package:idove/services/service_locator.dart';
 import 'package:idove/services/storage/user_storage_service.dart';
 import 'package:idove/utilities/Colors.dart';
@@ -7,6 +8,7 @@ import 'package:idove/utilities/TextStyles.dart';
 import 'package:idove/widgets/dialog_abstract.dart';
 
 UserStorageService _userStorageService = locator<UserStorageService>();
+AuthenticationService _authenticationService = locator<AuthenticationService>();
 
 Widget loginDialog(BuildContext context) {
   return iDoveAlertDialog(
@@ -32,14 +34,19 @@ Widget logoutDialog(BuildContext context) {
     actions: [
       FlatButton(
         onPressed: () async {
-          await _userStorageService.clearUserData();
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => LoginPage(),
-            ),
-            (route) => false,
-          );
+          Map<String, String> _logout = await _authenticationService.logout();
+          if (_logout['status'] == 'success') {
+            await _userStorageService.clearUserData();
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => LoginPage(),
+              ),
+              (route) => false,
+            );
+          } else {
+            Navigator.pop(context);
+          }
         },
         child: Text(
           'YES',
